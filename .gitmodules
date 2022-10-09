@@ -1,0 +1,3 @@
+[submodule "note-repo"]
+	path = note-repo
+	url = git@github.com:running-grass/digital-garden.git
