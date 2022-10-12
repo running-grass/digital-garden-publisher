@@ -12,7 +12,7 @@ module.exports = str => {
   str = str.replace(/^(.+)\|.+$/, '$1') // If the link is in format of [[Linked Note|Display Text]]
 
   str = str
-    .replace(/[^a-z0-9 -]/g, '') // remove invalid chars
+    .replace(/[^0-9a-zA-Z\u4e00-\u9fa5 -]/g, '') // remove invalid chars
     .replace(/^\s+|\s+$/g, '') // trim
     .replace(/\s+/g, '-') // collapse whitespace and replace by -
     .replace(/-+/g, '-') // collapse dashes

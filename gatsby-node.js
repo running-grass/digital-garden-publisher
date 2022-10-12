@@ -138,6 +138,7 @@ exports.createPages = async ({ graphql, actions }) => {
     }
   }
 
+  
   // Create pages for all notes.
   for (let i = 0; i < result.data.allMdx.edges.length; i++) {
     const node = result.data.allMdx.edges[i].node

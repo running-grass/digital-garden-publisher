@@ -1,3 +1,6 @@
 [submodule "note-repo"]
 	path = note-repo
 	url = git@github.com:running-grass/digital-garden.git
+[submodule "release"]
+	path = release
+	url = git@github.com:running-grass/running-grass.github.io.git
