@@ -14,7 +14,7 @@ printf "更新笔记仓库完成\n\n"
 
 printf "开始编译数字花园……\n\n"
 
-yarn build
+pnpm run build
 
 printf "编译数字花园完成\n\n"
 

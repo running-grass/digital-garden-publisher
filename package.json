@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-garden",
-  "version": "2.2.2",
-  "description": "Gatsby Garden lets you create a static html version of your markdown notes. You can convert your Obsidian Zettelkasten Notes into a public Digital Garden.",
+  "name": "gatsby-garden-publisher",
+  "version": "0.0.1",
+  "description": "个人使用的数字花园发布工具",
   "homepage": "https://github.com/binnyva/gatsby-garden",
   "keywords": [
     "markdown",
@@ -26,11 +26,15 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
+    "@gatsbyjs/reach-router": "^1.3.9",
     "@mdx-js/mdx": "^1.6.22",
     "@mdx-js/react": "^1.6.22",
     "@tippyjs/react": "^4.2.6",
+    "deepmerge": "^4.2.2",
     "gatsby": "^4.11.1",
     "gatsby-awesome-pagination": "^0.3.6",
+    "gatsby-legacy-polyfills": "^2.24.0",
+    "gatsby-link": "^4.24.1",
     "gatsby-plugin-dark-mode": "^1.1.2",
     "gatsby-plugin-feed": "^4.5.0",
     "gatsby-plugin-google-fonts": "^1.0.1",
@@ -40,13 +44,20 @@
     "gatsby-plugin-purgecss": "^6.1.1",
     "gatsby-plugin-react-helmet": "^5.0.0",
     "gatsby-plugin-sharp": "^4.4.0",
+    "gatsby-react-router-scroll": "^5.24.0",
     "gatsby-remark-images": "^6.4.0",
     "gatsby-remark-mermaid": "^2.1.0",
     "gatsby-remark-obsidian": "^0.5.0",
+    "gatsby-script": "^1.9.0",
     "gatsby-source-filesystem": "^4.4.0",
     "gatsby-transformer-remark": "^5.2.0",
     "gatsby-transformer-sharp": "^4.4.0",
+    "lodash": "^4.17.21",
+    "mitt": "^3.0.0",
+    "moment": "^2.29.4",
+    "node-html-parser": "^6.1.1",
     "postcss": "^8.3.6",
+    "prop-types": "^15.8.1",
     "puppeteer": "^13.1.2",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
@@ -54,9 +65,11 @@
     "react-helmet": "^6.1.0",
     "react-use-flexsearch": "^0.1.1",
     "react-vis-network-graph": "^3.0.1",
+    "shallow-compare": "^1.2.2",
     "sharp": "^0.30.7",
     "tippy.js": "^6.3.7",
-    "unist-util-visit": "^2.0.3"
+    "unist-util-visit": "^2.0.3",
+    "utils": "link:@gatsbyjs/reach-router/lib/utils"
   },
   "devDependencies": {
     "prettier": "2.2.1"
