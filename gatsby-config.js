@@ -4,10 +4,11 @@ module.exports = {
   trailingSlash: 'never', // Remove all trailing slashes on each URL, e.g. /x/ to /x
 
   siteMetadata: {
-    title: `Gatsby Garden`,
-    description: `A Digital Garden tended by Gatsby`,
+    title: `小草的数字花园`,
+    description: `分享我的所知、所见、所思、所想，从技术到生活。`,
+    author: `奔跑的小草`,
 
-    // siteUrl: `https://yoursite.com/notes/`, // URL at which your site will be published. This should be present if you want RSS feed.
+    siteUrl: `https://grass.work/`, // URL at which your site will be published. This should be present if you want RSS feed.
     // headerMenu: [ // Top Navbar items
     //   {type: 'page', item: '', title: 'Home'}, // Type can be 'page', 'note', 'tag', or 'link'
     //   {type: 'page', item: 'sitemap', title: 'Sitemap'},
@@ -33,57 +34,57 @@ module.exports = {
     `gatsby-plugin-sharp`,
     `gatsby-remark-images`,
     `gatsby-plugin-dark-mode`,
-    // { // Enable this if you want to have an RSS Feed. The `siteMetadata.siteUrl` property should be present for this to work
-    //   // Also, you'll need to install this library. To do that, run the command `npm install gatsby-plugin-feed-mdx --save` in the same directory as this gatsby-config.js file.
-    //   resolve: `gatsby-plugin-feed`,
-    //   options: {
-    //     query: `
-    //       {
-    //         site {
-    //           siteMetadata {
-    //             title
-    //             description
-    //             siteUrl
-    //             site_url: siteUrl
-    //           }
-    //         }
-    //       }
-    //     `,
-    //     feeds: [
-    //       {
-    //         serialize: ({ query: { site, allMdx } }) => {
-    //           return allMdx.edges.map(edge => {
-    //             return Object.assign({}, edge.node.fields, {
-    //               description: edge.node.excerpt,
-    //               date: edge.node.fields.date,
-    //               url: site.siteMetadata.siteUrl + edge.node.fields.slug,
-    //               guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
-    //               custom_elements: [{ "content:encoded": edge.node.html }]
-    //             });
-    //           });
-    //         },
-    //         query: `
-    //           {
-    //             allMdx(
-    //               limit: 20,
-    //               sort: { order: DESC, fields: [fields___date] },
-    //             ) {
-    //               edges {
-    //                 node {
-    //                   excerpt
-    //                   html
-    //                   fields { slug date title }
-    //                 }
-    //               }
-    //             }
-    //           }
-    //         `,
-    //         output: "/rss.xml",
-    //         title: "RSS Feed",
-    //       }
-    //     ]
-    //   }
-    // },
+    { // Enable this if you want to have an RSS Feed. The `siteMetadata.siteUrl` property should be present for this to work
+      // Also, you'll need to install this library. To do that, run the command `npm install gatsby-plugin-feed-mdx --save` in the same directory as this gatsby-config.js file.
+      resolve: `gatsby-plugin-feed`,
+      options: {
+        query: `
+          {
+            site {
+              siteMetadata {
+                title
+                description
+                siteUrl
+                site_url: siteUrl
+              }
+            }
+          }
+        `,
+        feeds: [
+          {
+            serialize: ({ query: { site, allMdx } }) => {
+              return allMdx.edges.map(edge => {
+                return Object.assign({}, edge.node.fields, {
+                  description: edge.node.excerpt,
+                  date: edge.node.fields.date,
+                  url: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  guid: site.siteMetadata.siteUrl + edge.node.fields.slug,
+                  custom_elements: [{ "content:encoded": edge.node.html }]
+                });
+              });
+            },
+            query: `
+              {
+                allMdx(
+                  limit: 20,
+                  sort: { order: DESC, fields: [fields___date] },
+                ) {
+                  edges {
+                    node {
+                      excerpt
+                      html
+                      fields { slug date title }
+                    }
+                  }
+                }
+              }
+            `,
+            output: "/rss.xml",
+            title: "RSS Feed",
+          }
+        ]
+      }
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
@@ -204,5 +205,7 @@ module.exports = {
           })),
       },
     },
+    `gatsby-plugin-offline`,
+    `gatsby-plugin-react-helmet`,
   ],
 }
