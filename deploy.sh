@@ -2,15 +2,13 @@
 # 设置出错自动退出
 set -o errexit
 
-printf "开始更新笔记仓库……\n\n"
+printf "开始更新子仓库……\n\n"
 
-cd note-repo
+git submodule foreach git checkout .
+git submodule foreach git checkout main
+git submodule foreach git pull
 
-git pull
-
-cd ..
-
-printf "更新笔记仓库完成\n\n"
+printf "更新子仓库完成\n\n"
 
 printf "开始编译数字花园……\n\n"
 
@@ -19,6 +17,7 @@ pnpm run build
 printf "编译数字花园完成\n\n"
 
 printf "开始部署数字花园……\n\n"
+pnpm rimraf release/*
 cp -r public/* release/
 
 cd release
@@ -41,8 +40,6 @@ cd ..
 
 
 printf "开始推送发布工具……\n\n"
-cp -r public/* release/
-
 # Add changes to git.
 git add .
 git commit -m "$msg"

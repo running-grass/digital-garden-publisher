@@ -1,9 +1,9 @@
 import React from 'react'
 import { graphql, Link, navigate } from 'gatsby'
 import { MDXRenderer } from 'gatsby-plugin-mdx'
-import { MDXProvider } from "@mdx-js/react"
+import { MDXProvider } from '@mdx-js/react'
 // import { Graph } from 'react-d3-graph'
-import Graph from "react-graph-vis";
+import Graph from 'react-graph-vis'
 import Tooltip from '../components/tooltip'
 import Layout from '../layout/layout'
 import '../styles/note.css'
@@ -12,94 +12,104 @@ const makeSlug = require('../utils/make-slug')
 const moment = require('moment')
 
 let titles = []
-const makeId = (title) => {
+const makeId = title => {
   titles.push(title)
   return title
 }
 
-const nodeExists = (title) => {
+const nodeExists = title => {
   return titles.includes(title)
 }
 
 export default function Note({ pageContext, data }) {
   const post = data.mdx
 
-    // Create the data for the graph visualisation for the note linking.
+  // Create the data for the graph visualisation for the note linking.
   const graph = {
     nodes: [{ id: makeId(post.fields.title), label: post.fields.title }],
-    edges: []
+    edges: [],
   }
 
   // Links to the current Note
   for (let i = 0; i < pageContext.referredBy.length; i++) {
     const refNoteTitle = pageContext.referredBy[i].title
-    if(!nodeExists(refNoteTitle)) graph.nodes.push({ id: makeId(refNoteTitle), label: refNoteTitle })
-    graph.edges.push({ from: makeId(refNoteTitle), to: makeId(post.fields.title) })
+    if (!nodeExists(refNoteTitle))
+      graph.nodes.push({ id: makeId(refNoteTitle), label: refNoteTitle })
+    graph.edges.push({
+      from: makeId(refNoteTitle),
+      to: makeId(post.fields.title),
+    })
   }
 
   // Links from the current Note
   for (let i = 0; i < pageContext.refersTo.length; i++) {
     const refNoteTitle = pageContext.refersTo[i]
-    if(!nodeExists(refNoteTitle)) graph.nodes.push({ id: makeId(refNoteTitle), label: refNoteTitle })
-    graph.edges.push({ from: makeId(post.fields.title), to: makeId(refNoteTitle) })
+    if (!nodeExists(refNoteTitle))
+      graph.nodes.push({ id: makeId(refNoteTitle), label: refNoteTitle })
+    graph.edges.push({
+      from: makeId(post.fields.title),
+      to: makeId(refNoteTitle),
+    })
   }
 
   const options = {
     nodes: {
-      shape: "dot",
+      shape: 'dot',
       size: 8,
       font: {
-        color: "#aaa",
+        color: '#aaa',
       },
       color: {
-        border: "#aaa",
-        background: "#aaa",
+        border: '#aaa',
+        background: '#aaa',
         highlight: {
-          border: "#ddd",
-          background: "#999",
-        }
-      }
+          border: '#ddd',
+          background: '#999',
+        },
+      },
     },
     edges: {
       color: {
-        border: "#aaa"
+        border: '#aaa',
       },
-      arrows: "middle",
-    }
+      arrows: 'middle',
+    },
   }
 
   const events = {
-    select: function(event) {
+    select: function (event) {
       var { nodes } = event
-      const id = nodes[0].toLowerCase();
+      const id = nodes[0].toLowerCase()
       const node = pageContext.linkedNotes[id]
       navigate(`${node.slug}`)
-    }
+    },
   }
 
-  const TooltipLink = (props) => {
-    if(props.href.includes("http")) { // External link
+  const TooltipLink = props => {
+    if (props.href.includes('http')) {
+      // External link
       // eslint-disable-next-line
-      return <a { ...props } />
-
-    } else if(typeof props.children !== 'string') { // There might be cases where an image is refered(or other non notes). 
+      return <a {...props} />
+    } else if (typeof props.children !== 'string') {
+      // There might be cases where an image is refered(or other non notes).
       // eslint-disable-next-line
-      return <a { ...props } />
-
-    } else if(!pageContext.linkedNotes) { // For unlisted notes. Causes a error otherwise. Because of this, Tooltips are NOT availabe on unlisted notes.
+      return <a {...props} />
+    } else if (!pageContext.linkedNotes) {
+      // For unlisted notes. Causes a error otherwise. Because of this, Tooltips are NOT availabe on unlisted notes.
       // eslint-disable-next-line
-      return <a { ...props } />
-
+      return <a {...props} />
     } else {
       const title = props.children.toLowerCase()
       let linkedNote = pageContext.linkedNotes[title] || null
 
-      if(linkedNote) {
-        return (<Tooltip content={ linkedNote.body }>
-                  <Link { ...props } to={ `/${props.href}` } title="" />
-                </Tooltip>)
+      if (linkedNote) {
+        return (
+          <Tooltip content={linkedNote.body}>
+            <Link {...props} to={`/${props.href}`} title="" />
+          </Tooltip>
+        )
       } else {
-        return <Link { ...props } to={ `/${props.href}` } />
+        return <Link {...props} to={`/${props.href}`} />
       }
     }
   }
@@ -146,12 +156,14 @@ export default function Note({ pageContext, data }) {
                   <div className="related-wrapper">
                     {pageContext.referredBy.map((note, index) => (
                       <div key={index} className="related-group block-box">
-                      <Tooltip content={ note.body }>
-                        <Link to={`/${makeSlug(note.title)}`}>
-                          <h4 className="related-title">{note.title}</h4>
-                          <p className="related-excerpt muted-text">{note.excerpt}</p>
-                        </Link>
-                      </Tooltip>
+                        <Tooltip content={note.body}>
+                          <Link to={`/${makeSlug(note.title)}`}>
+                            <h4 className="related-title">{note.title}</h4>
+                            <p className="related-excerpt muted-text">
+                              {note.excerpt}
+                            </p>
+                          </Link>
+                        </Tooltip>
                       </div>
                     ))}
                   </div>
@@ -163,8 +175,12 @@ export default function Note({ pageContext, data }) {
                 <div className="related-wrapper block-box">
                   <div className="related-group">
                     <p className="muted-text">
-                      <strong className="note-meta-title">Published on: </strong>{' '}
-                      {moment(new Date(post.fields.date)).format('Do MMMM, YYYY')}
+                      <strong className="note-meta-title">
+                        Published on:{' '}
+                      </strong>{' '}
+                      {moment(new Date(post.fields.date)).format(
+                        'Do MMMM, YYYY'
+                      )}
                     </p>
                     {post.frontmatter.source ? (
                       <Source src={post.frontmatter.source} />
@@ -190,11 +206,7 @@ export default function Note({ pageContext, data }) {
             </div>
 
             <div className="note-graph">
-              <Graph
-                graph={graph}
-                options={options}
-                events={events}
-              />
+              <Graph graph={graph} options={options} events={events} />
             </div>
           </div>
         </main>

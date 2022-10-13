@@ -11,7 +11,7 @@ import { DefaultMenuStructure, MenuRoot } from '../utils/menu-structure'
 export default function Home() {
   const data = useStaticQuery(graphql`
     query HomeQuery {
-      homeNote: mdx(frontmatter: {slug: {eq: "home"}}) {
+      homeNote: mdx(frontmatter: { slug: { eq: "home" } }) {
         body
         fields {
           title
@@ -44,11 +44,12 @@ export default function Home() {
   `)
 
   let tagList = DefaultMenuStructure('tag-list')
-  tagList.push({ // Add a link to a page that shows all tags.
-    type:'page',
-    item:'tags',
+  tagList.push({
+    // Add a link to a page that shows all tags.
+    type: 'page',
+    item: 'tags',
     title: '...',
-    liClassName: 'pill'
+    liClassName: 'pill',
   })
 
   return data.homeNote ? (
@@ -57,7 +58,7 @@ export default function Home() {
         <div className="note-area">
           <h1 className="note-title">{data.homeNote.fields.title}</h1>
           <div className="note-content">
-            <MDXRenderer>{ data.homeNote.body }</MDXRenderer>
+            <MDXRenderer>{data.homeNote.body}</MDXRenderer>
           </div>
         </div>
       </div>

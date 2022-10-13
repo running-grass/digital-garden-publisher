@@ -14,7 +14,7 @@
     "digital-garden",
     "obsidian"
   ],
-  "author": "Binny V A <binnyva@gmail.com>",
+  "author": "Running Grass<467195537@qq.com>",
   "license": "MIT",
   "scripts": {
     "build": "gatsby build",
@@ -75,12 +75,12 @@
     "react-helmet": "^6.1.0",
     "react-use-flexsearch": "^0.1.1",
     "react-vis-network-graph": "^3.0.1",
+    "rimraf": "^3.0.2",
     "shallow-compare": "^1.2.2",
     "sharp": "^0.30.7",
     "tippy.js": "^6.3.7",
     "unist-util-visit": "^2.0.3",
-    "unreachable": "^0.2.0",
-    "utils": "link:@gatsbyjs/reach-router/lib/utils"
+    "unreachable": "^0.2.0"
   },
   "devDependencies": {
     "prettier": "2.2.1"
