@@ -51,6 +51,7 @@
     "gatsby-plugin-purgecss": "^6.1.1",
     "gatsby-plugin-react-helmet": "^5.0.0",
     "gatsby-plugin-sharp": "^4.4.0",
+    "gatsby-plugin-sitemap": "^5.24.0",
     "gatsby-react-router-scroll": "^5.24.0",
     "gatsby-remark-images": "^6.4.0",
     "gatsby-remark-mermaid": "^2.1.0",
