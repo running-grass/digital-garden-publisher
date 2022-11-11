@@ -31,6 +31,16 @@ module.exports = {
     hoverPreview: true // If true, shows the content of an internal link in a tooltip when hovering over the link.
   },
   plugins: [
+    // Make sure this plugin is first in the array of plugins
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "G-DW2GXKQ7M0",
+        // this option places the tracking script into the head of the DOM
+        head: false,
+        // other options
+      },
+    },
     `gatsby-plugin-sharp`,
     `gatsby-remark-images`,
     `gatsby-plugin-dark-mode`,

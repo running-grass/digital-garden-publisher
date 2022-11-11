@@ -18,6 +18,7 @@ specifiers:
   gatsby-plugin-dark-mode: ^1.1.2
   gatsby-plugin-feed: ^4.5.0
   gatsby-plugin-feed-mdx: ^1.1.0
+  gatsby-plugin-google-analytics: ^5.0.0
   gatsby-plugin-google-fonts: ^1.0.1
   gatsby-plugin-local-search: ^2.0.1
   gatsby-plugin-mdx: ^3.2.0
@@ -76,6 +77,7 @@ dependencies:
   gatsby-plugin-dark-mode: 1.1.2_react@16.14.0
   gatsby-plugin-feed: 4.24.0_udfng272hq2e4ffl3lksoqafli
   gatsby-plugin-feed-mdx: 1.1.0_gatsby@4.24.8
+  gatsby-plugin-google-analytics: 5.0.0_udfng272hq2e4ffl3lksoqafli
   gatsby-plugin-google-fonts: 1.0.1
   gatsby-plugin-local-search: 2.0.1_gatsby@4.24.8
   gatsby-plugin-mdx: 3.20.0_qf56fmmzaqf46n5g2jvqbp42cy
@@ -6748,6 +6750,22 @@ packages:
       - graphql
     dev: false
 
+  /gatsby-plugin-google-analytics/5.0.0_udfng272hq2e4ffl3lksoqafli:
+    resolution: {integrity: sha512-UAY+j+dTpCjCkhZiN2dhupVDpS5Ur/hdrvkUdtsTCdeXCEa/XI+Sa1WG+PduSImoF1ymbjaKgAGAqFh1AsUTpA==}
+    engines: {node: '>=18.0.0'}
+    peerDependencies:
+      gatsby: ^5.0.0-next
+      react: ^18.0.0 || ^0.0.0
+      react-dom: ^18.0.0 || ^0.0.0
+    dependencies:
+      '@babel/runtime': 7.20.1
+      gatsby: 4.24.8_wcqkhtmu7mswc6yz4uyexck3ty
+      minimatch: 3.0.4
+      react: 16.14.0
+      react-dom: 16.14.0_react@16.14.0
+      web-vitals: 1.1.2
+    dev: false
+
   /gatsby-plugin-google-fonts/1.0.1:
     resolution: {integrity: sha512-p1NVkn27GUnDA5qHM+Z4cCcLCJIardzZXMon3640sT4xuL/AZJbsx3HEt2KY/5oZu0UXIkytkxzV2Da4rQeUIg==}
     dev: false
@@ -9370,6 +9388,12 @@ packages:
   /mini-svg-data-uri/1.4.4:
     resolution: {integrity: sha512-r9deDe9p5FJUPZAk3A59wGH7Ii9YrjjWw0jmw/liSbHl2CHiyXj6FcDXDu2K3TjVAXqiJdaw3xxwlZZr9E6nHg==}
     hasBin: true
+    dev: false
+
+  /minimatch/3.0.4:
+    resolution: {integrity: sha512-yJHVQEhyqPLUTgt9B83PXu6W3rx4MvvHvSUvToogpwoGDOUQ+yDrR0HRot+yOCdCO7u4hX3pWft6kWBBcqh0UA==}
+    dependencies:
+      brace-expansion: 1.1.11
     dev: false
 
   /minimatch/3.1.2:
@@ -12951,6 +12975,10 @@ packages:
 
   /web-namespaces/1.1.4:
     resolution: {integrity: sha512-wYxSGajtmoP4WxfejAPIr4l0fVh+jeMXZb08wNc0tMg6xsfZXj3cECqIK0G7ZAqUq0PP8WlMDtaOGVBTAWztNw==}
+    dev: false
+
+  /web-vitals/1.1.2:
+    resolution: {integrity: sha512-PFMKIY+bRSXlMxVAQ+m2aw9c/ioUYfDgrYot0YUa+/xa0sakubWhSDyxAKwzymvXVdF4CZI71g06W+mqhzu6ig==}
     dev: false
 
   /webidl-conversions/3.0.1:
