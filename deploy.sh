@@ -2,13 +2,14 @@
 # 设置出错自动退出
 set -o errexit
 
-printf "开始更新子仓库……\n\n"
+# 转移到了github actions中更新子仓库
+# printf "开始更新子仓库……\n\n"
 
-git submodule foreach git checkout .
-git submodule foreach git checkout main
-git submodule foreach git pull
+# git submodule foreach git checkout .
+# git submodule foreach git checkout main
+# git submodule foreach git pull
 
-printf "更新子仓库完成\n\n"
+# printf "更新子仓库完成\n\n"
 
 printf "开始编译数字花园……\n\n"
 

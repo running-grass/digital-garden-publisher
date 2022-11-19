@@ -3,7 +3,7 @@ name: 发布数字花园
 on:
   schedule:
     # 定时构建
-    - cron: '0 0 * * *'
+    - cron: '0 */5 * * *'
   # 手动触发
   workflow_dispatch: {}
 jobs:
