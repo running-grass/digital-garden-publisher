@@ -54,6 +54,7 @@ jobs:
         name: 缓存编译中间文件
         with:
           path: .cache
+          key: gatsby-config.js
 
       - name: 编译并部署
         run: ./deploy.sh
