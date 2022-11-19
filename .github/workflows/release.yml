@@ -1,11 +1,9 @@
 name: 发布数字花园
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
-
+  schedule:
+    # 定时构建
+    - cron: '0 0 * * *'
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -41,7 +39,7 @@ jobs:
           echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
       - uses: actions/cache@v3
-        name: 重新读取pnpm缓存
+        name: 缓存pnpm store
         with:
           path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
@@ -50,5 +48,10 @@ jobs:
 
       - name: 安装项目依赖
         run: pnpm install
+      - uses: actions/cache@v3
+        name: 缓存编译中间文件
+        with:
+          path: .cache
+
       - name: 编译并部署
         run: ./deploy.sh
