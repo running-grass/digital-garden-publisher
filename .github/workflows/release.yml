@@ -13,8 +13,10 @@ jobs:
     steps:
       - name: 检出代码仓库
         uses: actions/checkout@v3
-      - name: 更新子仓库
-        uses: snickerbockers/submodules-init@v4
+        with:
+          submodules: recursive
+      # - name: 更新子仓库
+      #   uses: snickerbockers/submodules-init@v4
       - name: 安装nodejs
         uses: actions/setup-node@v3
         with:
