@@ -1,7 +1,4 @@
-# This workflow will do a clean installation of node dependencies, cache/restore them, build the source code and run tests across different versions of node
-# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-nodejs
-
-name: Node.js CI
+name: 发布数字花园
 
 on:
   push:
@@ -16,7 +13,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v3
-      - run: ls note-repo
       - name: Install Node.js
         uses: actions/setup-node@v3
         with:
@@ -45,3 +41,4 @@ jobs:
 
       - name: Install dependencies
         run: pnpm install
+      - run: ./deploy.sh
