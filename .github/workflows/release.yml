@@ -11,34 +11,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout
+      - name: 检出代码仓库
         uses: actions/checkout@v3
-      - name: Install Node.js
+      - name: 更新子仓库
+        uses: snickerbockers/submodules-init@v4
+      - name: 安装nodejs
         uses: actions/setup-node@v3
         with:
           node-version: 16
-
       - uses: pnpm/action-setup@v2
-        name: Install pnpm
+        name: 安装pnpm
         id: pnpm-install
         with:
           version: 7
           run_install: false
 
-      - name: Get pnpm store directory
+      - name: 获取pnpm缓存目录
         id: pnpm-cache
         shell: bash
         run: |
           echo "STORE_PATH=$(pnpm store path)" >> $GITHUB_OUTPUT
 
       - uses: actions/cache@v3
-        name: Setup pnpm cache
+        name: 重新读取pnpm缓存
         with:
           path: ${{ steps.pnpm-cache.outputs.STORE_PATH }}
           key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
           restore-keys: |
             ${{ runner.os }}-pnpm-store-
 
-      - name: Install dependencies
+      - name: 安装项目依赖
         run: pnpm install
-      - run: ./deploy.sh
+      - name: 编译并部署
+        run: ./deploy.sh
