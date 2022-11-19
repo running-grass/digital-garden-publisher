@@ -6,7 +6,7 @@ set -o errexit
 # printf "开始更新子仓库……\n\n"
 
 # git submodule foreach git checkout .
-# git submodule foreach git checkout main
+git submodule foreach git checkout main
 # git submodule foreach git pull
 
 # printf "更新子仓库完成\n\n"
