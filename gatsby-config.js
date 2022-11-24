@@ -31,14 +31,26 @@ module.exports = {
     hoverPreview: true // If true, shows the content of an internal link in a tooltip when hovering over the link.
   },
   plugins: [
-    // Make sure this plugin is first in the array of plugins
     {
-      resolve: `gatsby-plugin-google-analytics`,
+      resolve: `gatsby-plugin-google-gtag`,
       options: {
-        trackingId: "G-DW2GXKQ7M0",
-        // this option places the tracking script into the head of the DOM
-        head: false,
-        // other options
+        // You can add multiple tracking ids and a pageview event will be fired for all of them.
+        trackingIds: [
+          "G-DW2GXKQ7M0", // Google Analytics / GA
+        ],
+        // This object is used for configuration specific to this plugin
+        pluginConfig: {
+          // Puts tracking script in the head instead of the body
+          head: false,
+          // Setting this parameter is also optional
+          // respectDNT: true,
+          // Avoids sending pageview hits from custom paths
+          // exclude: ["/preview/**", "/do-not-track/me/too/"],
+          // Defaults to https://www.googletagmanager.com
+          // origin: "YOUR_SELF_HOSTED_ORIGIN",
+          // Delays processing pageview events on route update (in milliseconds)
+          delayOnRouteUpdate: 0,
+        },
       },
     },
     `gatsby-plugin-sharp`,
